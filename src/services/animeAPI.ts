@@ -65,12 +65,14 @@ export const useStreamingLinks = (animeId: number, episodeNumber: number) => {
   return useQuery({
     queryKey: ['streamingLinks', animeId, episodeNumber],
     queryFn: () => fetchStreamingLinks(animeId, episodeNumber),
-    onError: (error) => {
-      toast({
-        title: 'Error fetching streaming links',
-        description: error instanceof Error ? error.message : 'Unknown error occurred',
-        variant: 'destructive',
-      });
+    meta: {
+      onError: (error: Error) => {
+        toast({
+          title: 'Error fetching streaming links',
+          description: error.message || 'Unknown error occurred',
+          variant: 'destructive',
+        });
+      }
     },
     retry: 1,
     staleTime: 1000 * 60 * 5, // 5 minutes

@@ -16,6 +16,9 @@ export interface Anime {
   duration: string;
   status: 'Airing' | 'Completed' | 'Upcoming';
   banner?: string;
+  coverImage?: string;
+  description?: string;
+  language?: string;
 }
 
 export interface Episode {
@@ -35,7 +38,9 @@ const mockAnime: Anime[] = [
     title: "Attack on Titan",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Attack+on+Titan",
     banner: "https://via.placeholder.com/1280x720/19171b/ffffff?text=Attack+on+Titan+Banner",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Attack+on+Titan+Cover",
     synopsis: "Several hundred years ago, humans were nearly exterminated by giants. Giants are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source.",
+    description: "Several hundred years ago, humans were nearly exterminated by giants. Giants are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source.",
     rating: 9.1,
     releaseYear: 2013,
     type: 'TV',
@@ -43,13 +48,16 @@ const mockAnime: Anime[] = [
     studios: ['Wit Studio', 'MAPPA'],
     genres: ['Action', 'Drama', 'Fantasy'],
     duration: '24 min',
-    status: 'Completed'
+    status: 'Completed',
+    language: 'Japanese'
   },
   {
     id: 2,
     title: "Demon Slayer",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Demon+Slayer",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Demon+Slayer+Cover",
     synopsis: "A family is attacked by demons and only two members survive - Tanjiro and his sister Nezuko, who is turning into a demon slowly. Tanjiro sets out to become a demon slayer to avenge his family and cure his sister.",
+    description: "A family is attacked by demons and only two members survive - Tanjiro and his sister Nezuko, who is turning into a demon slowly. Tanjiro sets out to become a demon slayer to avenge his family and cure his sister.",
     rating: 8.7,
     releaseYear: 2019,
     type: 'TV',
@@ -57,13 +65,16 @@ const mockAnime: Anime[] = [
     studios: ['ufotable'],
     genres: ['Action', 'Fantasy', 'Historical'],
     duration: '23 min',
-    status: 'Airing'
+    status: 'Airing',
+    language: 'Japanese'
   },
   {
     id: 3,
     title: "One Piece",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=One+Piece",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=One+Piece+Cover",
     synopsis: "Gol D. Roger was known as the Pirate King, the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world.",
+    description: "Gol D. Roger was known as the Pirate King, the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world.",
     rating: 8.9,
     releaseYear: 1999,
     type: 'TV',
@@ -71,13 +82,16 @@ const mockAnime: Anime[] = [
     studios: ['Toei Animation'],
     genres: ['Action', 'Adventure', 'Comedy'],
     duration: '24 min',
-    status: 'Airing'
+    status: 'Airing',
+    language: 'Japanese'
   },
   {
     id: 4,
     title: "My Hero Academia",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=My+Hero+Academia",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=My+Hero+Academia+Cover",
     synopsis: "In a world where people with superpowers (known as 'Quirks') are the norm, Izuku Midoriya has dreams of one day becoming a Hero, despite being bullied by his classmates for not having a Quirk.",
+    description: "In a world where people with superpowers (known as 'Quirks') are the norm, Izuku Midoriya has dreams of one day becoming a Hero, despite being bullied by his classmates for not having a Quirk.",
     rating: 8.5,
     releaseYear: 2016,
     type: 'TV',
@@ -85,13 +99,16 @@ const mockAnime: Anime[] = [
     studios: ['Bones'],
     genres: ['Action', 'Comedy', 'Superpower'],
     duration: '23 min',
-    status: 'Airing'
+    status: 'Airing',
+    language: 'Japanese'
   },
   {
     id: 5,
     title: "Jujutsu Kaisen",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Jujutsu+Kaisen",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Jujutsu+Kaisen+Cover",
     synopsis: "Yuji Itadori is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a classmate who has been attacked by curses, he eats the finger of Ryomen Sukuna, taking the curse into his own soul.",
+    description: "Yuji Itadori is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a classmate who has been attacked by curses, he eats the finger of Ryomen Sukuna, taking the curse into his own soul.",
     rating: 8.8,
     releaseYear: 2020,
     type: 'TV',
@@ -99,13 +116,16 @@ const mockAnime: Anime[] = [
     studios: ['MAPPA'],
     genres: ['Action', 'Fantasy', 'Supernatural'],
     duration: '23 min',
-    status: 'Airing'
+    status: 'Airing',
+    language: 'Japanese'
   },
   {
     id: 6,
     title: "Fullmetal Alchemist: Brotherhood",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Fullmetal+Alchemist",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Fullmetal+Alchemist+Cover",
     synopsis: "Two brothers search for a Philosopher's Stone after an attempt to revive their deceased mother goes wrong and leaves them in damaged physical forms.",
+    description: "Two brothers search for a Philosopher's Stone after an attempt to revive their deceased mother goes wrong and leaves them in damaged physical forms.",
     rating: 9.2,
     releaseYear: 2009,
     type: 'TV',
@@ -113,13 +133,16 @@ const mockAnime: Anime[] = [
     studios: ['Bones'],
     genres: ['Action', 'Adventure', 'Drama'],
     duration: '24 min',
-    status: 'Completed'
+    status: 'Completed',
+    language: 'Japanese'
   },
   {
     id: 7,
     title: "Naruto",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Naruto",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Naruto+Cover",
     synopsis: "Naruto Uzumaki, an adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, the village's leader and strongest ninja.",
+    description: "Naruto Uzumaki, an adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, the village's leader and strongest ninja.",
     rating: 8.3,
     releaseYear: 2002,
     type: 'TV',
@@ -127,13 +150,16 @@ const mockAnime: Anime[] = [
     studios: ['Pierrot'],
     genres: ['Action', 'Adventure', 'Fantasy'],
     duration: '23 min',
-    status: 'Completed'
+    status: 'Completed',
+    language: 'Japanese'
   },
   {
     id: 8,
     title: "Death Note",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Death+Note",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Death+Note+Cover",
     synopsis: "An intelligent high school student goes on a secret crusade to eliminate criminals from the world after discovering a notebook capable of killing anyone whose name is written into it.",
+    description: "An intelligent high school student goes on a secret crusade to eliminate criminals from the world after discovering a notebook capable of killing anyone whose name is written into it.",
     rating: 9.0,
     releaseYear: 2006,
     type: 'TV',
@@ -141,13 +167,16 @@ const mockAnime: Anime[] = [
     studios: ['Madhouse'],
     genres: ['Mystery', 'Psychological', 'Supernatural'],
     duration: '23 min',
-    status: 'Completed'
+    status: 'Completed',
+    language: 'Japanese'
   },
   {
     id: 9,
     title: "Spy x Family",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Spy+x+Family",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Spy+x+Family+Cover",
     synopsis: "A spy on an undercover mission gets married and adopts a child as part of his cover. His wife and daughter have secrets of their own, and all three must strive to keep together.",
+    description: "A spy on an undercover mission gets married and adopts a child as part of his cover. His wife and daughter have secrets of their own, and all three must strive to keep together.",
     rating: 8.6,
     releaseYear: 2022,
     type: 'TV',
@@ -155,13 +184,16 @@ const mockAnime: Anime[] = [
     studios: ['Wit Studio', 'CloverWorks'],
     genres: ['Action', 'Comedy', 'Slice of Life'],
     duration: '24 min',
-    status: 'Airing'
+    status: 'Airing',
+    language: 'Japanese'
   },
   {
     id: 10,
     title: "Your Name",
     image: "https://via.placeholder.com/240x360/19171b/ffffff?text=Your+Name",
+    coverImage: "https://via.placeholder.com/1920x1080/19171b/ffffff?text=Your+Name+Cover",
     synopsis: "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
+    description: "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
     rating: 8.9,
     releaseYear: 2016,
     type: 'Movie',
@@ -169,7 +201,8 @@ const mockAnime: Anime[] = [
     studios: ['CoMix Wave Films'],
     genres: ['Drama', 'Romance', 'Supernatural'],
     duration: '106 min',
-    status: 'Completed'
+    status: 'Completed',
+    language: 'Japanese'
   }
 ];
 
@@ -193,8 +226,97 @@ const mockEpisodes: Record<number, Episode[]> = {
     thumbnail: `https://via.placeholder.com/320x180/19171b/ffffff?text=DS+Ep+${i + 1}`,
     duration: 23,
     released: `2019-${Math.floor(i / 4) + 4}-${(i % 4) * 7 + 1}`
+  })),
+
+  3: Array.from({ length: 40 }, (_, i) => ({
+    id: i + 200,
+    animeId: 3,
+    number: i + 1,
+    title: `Episode ${i + 1}`,
+    thumbnail: `https://via.placeholder.com/320x180/19171b/ffffff?text=OP+Ep+${i + 1}`,
+    duration: 24,
+    released: `2020-${Math.floor(i / 4) + 1}-${(i % 4) * 7 + 1}`
+  })),
+
+  4: Array.from({ length: 30 }, (_, i) => ({
+    id: i + 300,
+    animeId: 4,
+    number: i + 1,
+    title: `Episode ${i + 1}`,
+    thumbnail: `https://via.placeholder.com/320x180/19171b/ffffff?text=MHA+Ep+${i + 1}`,
+    duration: 23,
+    released: `2021-${Math.floor(i / 4) + 1}-${(i % 4) * 7 + 1}`
+  })),
+
+  5: Array.from({ length: 24 }, (_, i) => ({
+    id: i + 400,
+    animeId: 5,
+    number: i + 1,
+    title: `Episode ${i + 1}`,
+    thumbnail: `https://via.placeholder.com/320x180/19171b/ffffff?text=JJK+Ep+${i + 1}`,
+    duration: 23,
+    released: `2020-${Math.floor(i / 4) + 4}-${(i % 4) * 7 + 1}`
   }))
 };
+
+// User-related data structures
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  watchlist: number[]; // Anime IDs
+  watchHistory: WatchHistoryItem[];
+  createdAt: string;
+}
+
+export interface WatchHistoryItem {
+  animeId: number;
+  episodeId: number;
+  timestamp: number; // Seconds watched
+  completed: boolean;
+  lastWatched: string; // ISO date string
+}
+
+// Mock users
+const mockUsers: Record<string, User> = {
+  "user1": {
+    id: "user1",
+    username: "animeExplorer",
+    email: "explorer@example.com",
+    avatar: "https://via.placeholder.com/100x100/19171b/ffffff?text=AE",
+    watchlist: [1, 3, 5],
+    watchHistory: [
+      {
+        animeId: 1,
+        episodeId: 1,
+        timestamp: 780,
+        completed: true,
+        lastWatched: "2023-06-15T14:30:00Z"
+      },
+      {
+        animeId: 1,
+        episodeId: 2,
+        timestamp: 450,
+        completed: false,
+        lastWatched: "2023-06-16T19:15:00Z"
+      }
+    ],
+    createdAt: "2023-01-01T12:00:00Z"
+  },
+  "user2": {
+    id: "user2",
+    username: "otakuMaster",
+    email: "otaku@example.com",
+    avatar: "https://via.placeholder.com/100x100/19171b/ffffff?text=OM",
+    watchlist: [2, 4, 6],
+    watchHistory: [],
+    createdAt: "2023-02-15T09:30:00Z"
+  }
+};
+
+// Authentication state
+let currentUser: User | null = null;
 
 // Mock API functions
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -266,7 +388,178 @@ const getEpisode = async (animeId: number, episodeNumber: number): Promise<Episo
   return episode || null;
 };
 
+// User-related API functions
+const loginUser = async (email: string, password: string): Promise<User | null> => {
+  await delay(800);
+  
+  // Simple mock authentication - in a real app, you would validate the password
+  const user = Object.values(mockUsers).find(u => u.email === email);
+  
+  if (user) {
+    currentUser = user;
+    // Store in localStorage to persist across page refreshes
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    return user;
+  }
+  
+  return null;
+};
+
+const registerUser = async (username: string, email: string, password: string): Promise<User | null> => {
+  await delay(1000);
+  
+  // Check if email is already in use
+  if (Object.values(mockUsers).some(u => u.email === email)) {
+    return null;
+  }
+  
+  // Create new user
+  const newUser: User = {
+    id: `user${Date.now()}`,
+    username,
+    email,
+    avatar: `https://via.placeholder.com/100x100/19171b/ffffff?text=${username.substring(0, 2).toUpperCase()}`,
+    watchlist: [],
+    watchHistory: [],
+    createdAt: new Date().toISOString()
+  };
+  
+  // Add to mock users
+  mockUsers[newUser.id] = newUser;
+  
+  // Log in the new user
+  currentUser = newUser;
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  
+  return newUser;
+};
+
+const logoutUser = async (): Promise<boolean> => {
+  await delay(300);
+  currentUser = null;
+  localStorage.removeItem('currentUser');
+  return true;
+};
+
+const getCurrentUser = async (): Promise<User | null> => {
+  // Check localStorage first
+  const storedUser = localStorage.getItem('currentUser');
+  if (storedUser) {
+    currentUser = JSON.parse(storedUser);
+  }
+  
+  return currentUser;
+};
+
+// Watchlist management
+const addToWatchlist = async (animeId: number): Promise<boolean> => {
+  await delay(500);
+  
+  if (!currentUser) return false;
+  
+  // Update in-memory user
+  if (!currentUser.watchlist.includes(animeId)) {
+    currentUser.watchlist.push(animeId);
+    
+    // Update in mock database
+    mockUsers[currentUser.id] = currentUser;
+    
+    // Update in localStorage
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    
+    return true;
+  }
+  
+  return false;
+};
+
+const removeFromWatchlist = async (animeId: number): Promise<boolean> => {
+  await delay(500);
+  
+  if (!currentUser) return false;
+  
+  // Update in-memory user
+  currentUser.watchlist = currentUser.watchlist.filter(id => id !== animeId);
+  
+  // Update in mock database
+  mockUsers[currentUser.id] = currentUser;
+  
+  // Update in localStorage
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  
+  return true;
+};
+
+const getWatchlist = async (): Promise<Anime[]> => {
+  await delay(700);
+  
+  if (!currentUser) return [];
+  
+  return mockAnime.filter(anime => currentUser!.watchlist.includes(anime.id));
+};
+
+// Watch history management
+const updateWatchHistory = async (animeId: number, episodeId: number, timestamp: number, completed: boolean): Promise<boolean> => {
+  await delay(500);
+  
+  if (!currentUser) return false;
+  
+  // Find existing history item or create new one
+  const existingIndex = currentUser.watchHistory.findIndex(
+    item => item.animeId === animeId && item.episodeId === episodeId
+  );
+  
+  const historyItem: WatchHistoryItem = {
+    animeId,
+    episodeId,
+    timestamp,
+    completed,
+    lastWatched: new Date().toISOString()
+  };
+  
+  if (existingIndex >= 0) {
+    currentUser.watchHistory[existingIndex] = historyItem;
+  } else {
+    currentUser.watchHistory.push(historyItem);
+  }
+  
+  // Update in mock database
+  mockUsers[currentUser.id] = currentUser;
+  
+  // Update in localStorage
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  
+  return true;
+};
+
+const getWatchHistory = async (): Promise<{anime: Anime, episode: Episode, progress: WatchHistoryItem}[]> => {
+  await delay(700);
+  
+  if (!currentUser) return [];
+  
+  const historyItems = await Promise.all(
+    currentUser.watchHistory.map(async (item) => {
+      const anime = await getAnimeById(item.animeId);
+      const episodes = await getEpisodes(item.animeId);
+      const episode = episodes.find(e => e.id === item.episodeId);
+      
+      if (anime && episode) {
+        return {
+          anime,
+          episode,
+          progress: item
+        };
+      }
+      
+      return null;
+    })
+  );
+  
+  return historyItems.filter(item => item !== null) as {anime: Anime, episode: Episode, progress: WatchHistoryItem}[];
+};
+
 export default {
+  // Anime data functions
   getAllAnime,
   getAnimeById,
   getFeaturedAnime,
@@ -276,5 +569,20 @@ export default {
   getAnimeByGenre,
   searchAnime,
   getEpisodes,
-  getEpisode
+  getEpisode,
+  
+  // User authentication
+  loginUser,
+  registerUser,
+  logoutUser,
+  getCurrentUser,
+  
+  // Watchlist management
+  addToWatchlist,
+  removeFromWatchlist,
+  getWatchlist,
+  
+  // Watch history
+  updateWatchHistory,
+  getWatchHistory
 };

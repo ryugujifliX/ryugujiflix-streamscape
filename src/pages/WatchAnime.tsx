@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, List, Heart, Share2, Settings, PlaySquare } from 'lucide-react';
 import api, { Anime, Episode } from '../services/api';
+import { useStreamingLinks } from '../services/animeAPI';
+import { useToast } from '../components/ui/use-toast';
 
 const WatchAnime = () => {
   const { id, episodeNumber } = useParams<{ id: string, episodeNumber: string }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const [anime, setAnime] = useState<Anime | null>(null);
   const [episodes, setEpisodes] = useState<Episode[]>([]);
@@ -14,15 +17,24 @@ const WatchAnime = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
   const [showEpisodes, setShowEpisodes] = useState(false);
-  const [selectedServer, setSelectedServer] = useState("StreamSB");
+  const [selectedServer, setSelectedServer] = useState("GogoAnime");
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+
+  // Convert params to numbers
+  const animeId = id ? parseInt(id) : 0;
+  const epNumber = episodeNumber ? parseInt(episodeNumber) : 0;
+
+  // Fetch streaming links using React Query
+  const { 
+    data: streamingData, 
+    isLoading: isLoadingStreams, 
+    isError: isStreamError 
+  } = useStreamingLinks(animeId, epNumber);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!id || !episodeNumber) return;
-        
-        const animeId = parseInt(id);
-        const epNumber = parseInt(episodeNumber);
         
         // Fetch anime and episodes data
         const animeData = await api.getAnimeById(animeId);
@@ -53,7 +65,15 @@ const WatchAnime = () => {
     
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-  }, [id, episodeNumber, navigate]);
+  }, [id, episodeNumber, navigate, animeId, epNumber]);
+
+  // Set video URL when streaming data or selected server changes
+  useEffect(() => {
+    if (streamingData && streamingData.sources.length > 0) {
+      const source = streamingData.sources.find(s => s.server === selectedServer) || streamingData.sources[0];
+      setVideoUrl(source.url);
+    }
+  }, [streamingData, selectedServer]);
   
   if (isLoading) {
     return (
@@ -112,6 +132,21 @@ const WatchAnime = () => {
     setShowEpisodes(!showEpisodes);
     setShowSettings(false);
   };
+
+  const handleServerChange = (server: string) => {
+    setSelectedServer(server);
+    if (streamingData) {
+      const source = streamingData.sources.find(s => s.server === server);
+      if (source) {
+        setVideoUrl(source.url);
+        toast({
+          title: "Server Changed",
+          description: `Now playing from ${server}`,
+          duration: 2000,
+        });
+      }
+    }
+  };
   
   return (
     <div className="min-h-screen bg-black">
@@ -120,12 +155,31 @@ const WatchAnime = () => {
         {/* Video Player (Placeholder) */}
         <div className="relative w-full aspect-video bg-black animate-fade-in">
           <div className="absolute inset-0 flex items-center justify-center">
-            {/* This would be your actual video player component */}
-            <div className="flex flex-col items-center">
-              <PlaySquare size={48} className="text-ryugu-red mb-4" />
-              <p className="text-white/70">{anime.title} - Episode {currentEpisode.number}</p>
-              <p className="text-white/50 text-sm">Playing on {selectedServer} server</p>
-            </div>
+            {isLoadingStreams ? (
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 border-4 border-ryugu-red border-t-transparent rounded-full animate-spin mb-4"></div>
+                <p className="text-white/70">Loading stream...</p>
+              </div>
+            ) : isStreamError ? (
+              <div className="flex flex-col items-center">
+                <p className="text-white/70 mb-2">Error loading stream.</p>
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="px-4 py-2 bg-ryugu-red rounded-md text-sm"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center">
+                <PlaySquare size={48} className="text-ryugu-red mb-4" />
+                <p className="text-white/70">{anime.title} - Episode {currentEpisode.number}</p>
+                <p className="text-white/50 text-sm">Playing on {selectedServer} server</p>
+                {videoUrl && (
+                  <p className="text-white/30 text-xs mt-2">Stream URL: {videoUrl.substring(0, 30)}...</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
         
@@ -213,17 +267,17 @@ const WatchAnime = () => {
                 <div>
                   <label className="text-xs text-white/60 block mb-2">Select Server</label>
                   <div className="flex flex-wrap gap-2">
-                    {["StreamSB", "Emime Mo", "S3MFB"].map(server => (
+                    {streamingData && streamingData.sources.map(source => (
                       <button
-                        key={server}
-                        onClick={() => setSelectedServer(server)}
+                        key={source.server}
+                        onClick={() => handleServerChange(source.server)}
                         className={`px-3 py-1 text-xs rounded-md ${
-                          selectedServer === server 
+                          selectedServer === source.server 
                             ? 'bg-ryugu-red text-white' 
                             : 'bg-white/10 hover:bg-white/20'
                         }`}
                       >
-                        {server}
+                        {source.server} {source.quality && `(${source.quality})`}
                       </button>
                     ))}
                   </div>

@@ -16,6 +16,7 @@ export const fetchAnimeById = async (id: number | string): Promise<Anime> => {
     id: Number(id),
     title: id === '1' ? 'Attack on Titan' : id === '2' ? 'Demon Slayer' : 'One Piece',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed euismod, nisl nec ultricies ultricies, nunc nisl ultricies nisl, nec ultricies nisl nisl nec ultricies ultricies.',
+    synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Sed euismod, nisl nec ultricies ultricies, nunc nisl ultricies nisl, nec ultricies nisl nisl nec ultricies ultricies.',
     image: `https://via.placeholder.com/500x750/19171b/ffffff?text=Anime+${id}`,
     banner: `https://via.placeholder.com/1920x1080/19171b/ffffff?text=Banner+${id}`,
     releaseYear: 2013,
@@ -23,9 +24,10 @@ export const fetchAnimeById = async (id: number | string): Promise<Anime> => {
     genres: ['Action', 'Drama', 'Fantasy'],
     type: 'TV',
     episodes: 25,
-    score: 9.1,
+    rating: 9.1,
     popularity: 1,
     studios: ['Wit Studio', 'MAPPA'],
+    duration: '24 min',
     trailer: 'https://www.youtube.com/watch?v=MGRm4IzK1SQ',
     episodeList: Array.from({ length: 12 }, (_, i) => ({
       id: i + 1,
@@ -48,6 +50,7 @@ export const fetchTrendingAnime = async (): Promise<Anime[]> => {
     id: i + 1,
     title: `Trending Anime ${i + 1}`,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: `https://via.placeholder.com/240x360/19171b/ffffff?text=Trending+${i + 1}`,
     banner: `https://via.placeholder.com/1920x1080/19171b/ffffff?text=Banner+${i + 1}`,
     releaseYear: 2020 + Math.floor(i / 3),
@@ -55,9 +58,10 @@ export const fetchTrendingAnime = async (): Promise<Anime[]> => {
     genres: ['Action', 'Adventure', 'Fantasy'],
     type: i % 5 === 0 ? 'Movie' : 'TV',
     episodes: i % 5 === 0 ? 1 : 12,
-    score: 8 + Math.random(),
+    rating: 8 + Math.random(),
     popularity: i + 1,
     studios: ['Studio MAPPA'],
+    duration: '24 min',
     trailer: 'https://www.youtube.com/watch?v=example',
     episodeList: [],
   }));
@@ -71,6 +75,7 @@ export const fetchRecentAnime = async (): Promise<Anime[]> => {
     id: i + 11,
     title: `Recent Anime ${i + 1}`,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: `https://via.placeholder.com/240x360/19171b/ffffff?text=Recent+${i + 1}`,
     banner: `https://via.placeholder.com/1920x1080/19171b/ffffff?text=Banner+${i + 11}`,
     releaseYear: 2023,
@@ -78,9 +83,10 @@ export const fetchRecentAnime = async (): Promise<Anime[]> => {
     genres: ['Comedy', 'Slice of Life', 'Romance'],
     type: 'TV',
     episodes: 12,
-    score: 7.5 + Math.random(),
+    rating: 7.5 + Math.random(),
     popularity: i + 11,
     studios: ['Studio Bones'],
+    duration: '23 min',
     trailer: 'https://www.youtube.com/watch?v=example',
     episodeList: [],
   }));
@@ -117,8 +123,11 @@ export const fetchWatchlist = async (): Promise<Anime[]> => {
 
 // Fetch episode stream data
 export const fetchEpisodeStream = async (animeId: number | string, episodeNumber: number | string) => {
-  return streamingService.getStreamingData(animeId, episodeNumber);
+  return streamingService.getStreamingData(Number(animeId), Number(episodeNumber));
 };
+
+// Export the useStreamingLinks hook
+export { useStreamingLinks } from './hooks/useStreamingLinks';
 
 export default {
   fetchAnimeById,

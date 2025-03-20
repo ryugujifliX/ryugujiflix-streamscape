@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import api, { Anime, Episode } from '../services/api';
-import { useStreamingLinks } from '../services/animeAPI';
+import { useStreamingLinks } from '../services/hooks/useStreamingLinks';
 import VideoPlayer from '../components/watch/VideoPlayer';
 import PlayerControls from '../components/watch/PlayerControls';
 import SettingsPanel from '../components/watch/SettingsPanel';

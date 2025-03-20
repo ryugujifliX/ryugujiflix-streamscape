@@ -120,6 +120,13 @@ export const addStreamingSource = async (
   return true;
 };
 
+export const streamingService = {
+  getStreamingData: getStreamingLinks,
+  reportBrokenLink,
+  addStreamingSource,
+  SERVERS
+};
+
 export default {
   getStreamingLinks,
   reportBrokenLink,

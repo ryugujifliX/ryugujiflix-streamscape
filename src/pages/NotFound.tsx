@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Home, ArrowLeft } from 'lucide-react';
 
 const NotFound = () => {
   const location = useLocation();
@@ -21,12 +23,20 @@ const NotFound = () => {
             </span>
           </p>
         </div>
-        <Link
-          to="/"
-          className="ryugu-button inline-flex"
-        >
-          Return to Home
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button asChild variant="default" className="w-full sm:w-auto">
+            <Link to="/" className="flex items-center gap-2">
+              <Home size={16} />
+              Return to Home
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="w-full sm:w-auto">
+            <Link to="javascript:history.back()" className="flex items-center gap-2">
+              <ArrowLeft size={16} />
+              Go Back
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

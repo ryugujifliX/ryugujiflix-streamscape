@@ -18,9 +18,6 @@ export interface Subtitle {
   url: string;
 }
 
-// Mock API endpoints
-const API_BASE_URL = "/api";
-
 // Server options
 export const SERVERS = {
   VIDSTREAMING: "VidStreaming",
@@ -32,49 +29,76 @@ export const SERVERS = {
 // Function to get streaming links for an episode
 export const getStreamingLinks = async (animeId: number, episodeNumber: number): Promise<StreamData> => {
   try {
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 800));
+    // Real API integration with Consumet API
+    const response = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${animeId}-episode-${episodeNumber}`);
     
-    // Mock response - this would be a fetch call to your backend in production
+    if (!response.ok) {
+      // If real API fails, fall back to mock data
+      console.warn("Failed to fetch real streaming data, using fallback data");
+      return getFallbackStreamingLinks(animeId, episodeNumber);
+    }
+    
+    const data = await response.json();
+    
+    // Transform the API response to match our StreamData interface
     return {
       id: episodeNumber,
-      sources: [
-        {
-          server: SERVERS.VIDSTREAMING,
-          url: `https://example.com/vidstreaming/${animeId}/episode-${episodeNumber}`,
-          quality: "1080p"
-        },
-        {
-          server: SERVERS.GOGO,
-          url: `https://example.com/gogo/${animeId}/ep-${episodeNumber}`,
-          quality: "720p"
-        },
-        {
-          server: SERVERS.JIKAN,
-          url: `https://example.com/jikan/${animeId}/episode/${episodeNumber}`,
-          quality: "480p"
-        },
-        {
-          server: SERVERS.BACKUP,
-          url: `https://example.com/backup/${animeId}/${episodeNumber}`,
-          quality: "360p"
-        }
-      ],
-      subtitles: [
-        { lang: "English", url: `https://example.com/subs/en/${animeId}/${episodeNumber}` },
-        { lang: "Spanish", url: `https://example.com/subs/es/${animeId}/${episodeNumber}` },
-        { lang: "Japanese", url: `https://example.com/subs/jp/${animeId}/${episodeNumber}` }
-      ]
+      sources: data.sources.map((source: any) => ({
+        server: source.isM3U8 ? "HLS" : source.name || SERVERS.VIDSTREAMING,
+        url: source.url,
+        quality: source.quality || "Auto"
+      })),
+      subtitles: data.subtitles?.map((sub: any) => ({
+        lang: sub.lang,
+        url: sub.url
+      })) || []
     };
   } catch (error) {
     console.error("Error fetching streaming links:", error);
     toast({
       title: "Error",
-      description: "Failed to load streaming sources. Please try again.",
+      description: "Failed to load streaming sources. Using fallback data.",
       variant: "destructive"
     });
-    throw new Error("Failed to fetch streaming links");
+    
+    // Return mock data as fallback
+    return getFallbackStreamingLinks(animeId, episodeNumber);
   }
+};
+
+// Fallback function to get mock streaming links
+const getFallbackStreamingLinks = (animeId: number, episodeNumber: number): StreamData => {
+  // Simulate network delay
+  return {
+    id: episodeNumber,
+    sources: [
+      {
+        server: SERVERS.VIDSTREAMING,
+        url: `https://example.com/vidstreaming/${animeId}/episode-${episodeNumber}`,
+        quality: "1080p"
+      },
+      {
+        server: SERVERS.GOGO,
+        url: `https://example.com/gogo/${animeId}/ep-${episodeNumber}`,
+        quality: "720p"
+      },
+      {
+        server: SERVERS.JIKAN,
+        url: `https://example.com/jikan/${animeId}/episode/${episodeNumber}`,
+        quality: "480p"
+      },
+      {
+        server: SERVERS.BACKUP,
+        url: `https://example.com/backup/${animeId}/${episodeNumber}`,
+        quality: "360p"
+      }
+    ],
+    subtitles: [
+      { lang: "English", url: `https://example.com/subs/en/${animeId}/${episodeNumber}` },
+      { lang: "Spanish", url: `https://example.com/subs/es/${animeId}/${episodeNumber}` },
+      { lang: "Japanese", url: `https://example.com/subs/jp/${animeId}/${episodeNumber}` }
+    ]
+  };
 };
 
 // Function to report a broken link
@@ -127,9 +151,4 @@ export const streamingService = {
   SERVERS
 };
 
-export default {
-  getStreamingLinks,
-  reportBrokenLink,
-  addStreamingSource,
-  SERVERS
-};
+export default streamingService;

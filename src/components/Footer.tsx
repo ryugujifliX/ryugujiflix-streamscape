@@ -18,26 +18,26 @@ const Footer = () => {
               The ultimate anime streaming platform with premium content and outstanding user experience.
             </p>
             <div className="flex space-x-4 pt-2">
-              <a href="#" className="text-white/50 hover:text-ryugu-red transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-ryugu-red transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-white/50 hover:text-ryugu-red transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-ryugu-red transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white/50 hover:text-ryugu-red transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-ryugu-red transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white/50 hover:text-ryugu-red transition-colors">
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-ryugu-red transition-colors">
                 <Youtube size={20} />
               </a>
-              <a href="#" className="text-white/50 hover:text-ryugu-red transition-colors">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-ryugu-red transition-colors">
                 <Github size={20} />
               </a>
             </div>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Browse</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Browse</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/trending" className="text-white/70 hover:text-ryugu-red transition-colors">Trending</Link>
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Genres</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Genres</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/genre/action" className="text-white/70 hover:text-ryugu-red transition-colors">Action</Link>
@@ -79,7 +79,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-white/70 hover:text-ryugu-red transition-colors">About Us</Link>

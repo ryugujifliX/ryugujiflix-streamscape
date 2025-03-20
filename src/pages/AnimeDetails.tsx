@@ -128,7 +128,7 @@ const AnimeDetails = () => {
                   <span>{anime.episodes} {anime.type === 'Movie' ? 'Movie' : 'Episodes'}</span>
                 </div>
                 <span className={`px-2 py-1 rounded text-xs ${
-                  anime.status === 'Ongoing' ? 'bg-green-600/80' : 'bg-blue-600/80'
+                  anime.status === 'Airing' ? 'bg-green-600/80' : 'bg-blue-600/80'
                 }`}>
                   {anime.status}
                 </span>

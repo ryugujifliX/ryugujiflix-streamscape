@@ -70,7 +70,7 @@ const Terms = () => {
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold">7. Termination</h2>
             <p className="text-white/80">
-              We may terminate or suspend your account and access to our services at our sole discretion, without prior notice or liability, for any reason, including if you breach these Terms of Service.
+              We may terminate or suspend your account and access to our services at our sole discretion, without prior notice, for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties, or for any other reason.
             </p>
           </div>
         </div>

@@ -8,7 +8,7 @@ import api from '@/services/api';
 const Series = () => {
   const { data: series, isLoading, error } = useQuery({
     queryKey: ['animeSeries'],
-    queryFn: () => api.getAnimeByType('TV'),
+    queryFn: () => api.getAllAnime().then(animes => animes.filter(anime => anime.type === 'TV')),
   });
 
   if (isLoading) {

@@ -8,7 +8,10 @@ import api from '@/services/api';
 const TopRated = () => {
   const { data: topRatedAnime, isLoading, error } = useQuery({
     queryKey: ['topRatedAnime'],
-    queryFn: api.getTopRatedAnime,
+    queryFn: () => api.getAllAnime().then(animes => 
+      // Sort by rating in descending order
+      animes.sort((a, b) => b.rating - a.rating).slice(0, 10)
+    ),
   });
 
   if (isLoading) {

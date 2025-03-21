@@ -9,81 +9,67 @@ const Privacy = () => {
         
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">1. Information We Collect</h2>
+            <h2 className="text-2xl font-semibold">Information We Collect</h2>
             <p className="text-white/80">
-              We collect several types of information from and about users of our platform, including:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-white/80">
-              <li>Personal information such as name, email address, and payment details</li>
-              <li>Usage data including viewing history, search queries, and interaction with content</li>
-              <li>Device information such as IP address, browser type, and operating system</li>
-              <li>Location data based on your IP address or device location settings</li>
-            </ul>
-          </div>
-          
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">2. How We Use Your Information</h2>
-            <p className="text-white/80">
-              We use the information we collect for various purposes, including:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-white/80">
-              <li>Providing, maintaining, and improving our services</li>
-              <li>Processing transactions and sending related information</li>
-              <li>Personalizing your experience and content recommendations</li>
-              <li>Communicating with you about service updates and promotions</li>
-              <li>Analyzing usage patterns to enhance our platform</li>
-            </ul>
-          </div>
-          
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">3. Information Sharing</h2>
-            <p className="text-white/80">
-              We may share your information with:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-white/80">
-              <li>Service providers who perform services on our behalf</li>
-              <li>Business partners with whom we jointly offer products or services</li>
-              <li>Law enforcement or other authorities when required by law</li>
-              <li>Third parties in connection with a merger, acquisition, or sale of assets</li>
-            </ul>
-            <p className="text-white/80">
-              We do not sell your personal information to third parties for their marketing purposes.
+              We collect information you provide directly to us when you create an account, such as your name, email address, and password. We also collect information about your use of our service, including the anime you watch, the time you spend watching, and your interactions with the platform.
             </p>
           </div>
           
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">4. Data Security</h2>
+            <h2 className="text-2xl font-semibold">How We Use Your Information</h2>
             <p className="text-white/80">
-              We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+              We use the information we collect to provide, maintain, and improve our services, including to personalize the content we recommend to you. We may use your email address to send you service-related notices and promotional messages.
             </p>
             <p className="text-white/80">
-              While we use commercially reasonable efforts to safeguard your data, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security of your information.
-            </p>
-          </div>
-          
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">5. Your Rights and Choices</h2>
-            <p className="text-white/80">
-              Depending on your location, you may have certain rights regarding your personal information, including:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-white/80">
-              <li>Accessing, correcting, or deleting your personal information</li>
-              <li>Withdrawing consent for processing your data</li>
-              <li>Requesting restriction of processing or objecting to processing</li>
-              <li>Data portability rights</li>
-            </ul>
-            <p className="text-white/80">
-              To exercise these rights, please contact us using the information provided in the "Contact Us" section.
+              We analyze user behavior in the aggregate to better understand how our services are being used and to improve the user experience.
             </p>
           </div>
           
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">6. Changes to This Policy</h2>
+            <h2 className="text-2xl font-semibold">Sharing Your Information</h2>
             <p className="text-white/80">
-              We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+              We do not sell or rent your personal information to third parties. We may share your information with service providers who perform services on our behalf, such as payment processing or content delivery.
             </p>
             <p className="text-white/80">
-              You are advised to review this Privacy Policy periodically for any changes.
+              We may disclose your information if required by law or if we believe in good faith that such action is necessary to comply with legal processes or protect our rights and safety or the rights and safety of others.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold">Data Security</h2>
+            <p className="text-white/80">
+              We implement reasonable security measures to protect your personal information from unauthorized access, alteration, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold">Your Choices</h2>
+            <p className="text-white/80">
+              You can access and update certain information about your account from your account settings. You can opt out of receiving promotional emails by following the unsubscribe instructions in those emails.
+            </p>
+            <p className="text-white/80">
+              You can choose to delete your account at any time, which will remove your personal information from our services, subject to certain limitations and legal requirements.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold">Cookies and Tracking Technologies</h2>
+            <p className="text-white/80">
+              We use cookies and similar technologies to collect information about your interactions with our services. You can configure your browser to refuse cookies or indicate when a cookie is being sent, but this may limit your ability to use some features of our services.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold">Changes to This Policy</h2>
+            <p className="text-white/80">
+              We may update this Privacy Policy from time to time. If we make significant changes, we will notify you by email or by posting a notice on our website prior to the changes becoming effective.
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold">Contact Us</h2>
+            <p className="text-white/80">
+              If you have any questions about this Privacy Policy, please contact us at privacy@ryugujiflix.com.
             </p>
           </div>
         </div>

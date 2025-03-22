@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Bell, Menu, X, User, Heart, Home, PlayCircle, LogOut } from 'lucide-react';
 
 const NavBar = () => {
@@ -8,6 +8,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,9 +34,11 @@ const NavBar = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement search functionality
-    console.log(`Searching for: ${searchQuery}`);
-    // Navigate to search results page with query
+    if (searchQuery.trim()) {
+      // Navigate to search results page with query parameter
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery(''); // Clear search input after submission
+    }
   };
 
   return (

@@ -15,6 +15,7 @@ import Watchlist from "./pages/Watchlist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import SearchResults from "./pages/SearchResults"; // Import new search results page
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/search" element={<SearchResults />} /> {/* Add new search route */}
             
             {/* Genre pages */}
             <Route path="/genre/:genre" element={<GenrePage />} />

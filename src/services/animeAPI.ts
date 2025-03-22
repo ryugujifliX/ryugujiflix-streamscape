@@ -1,4 +1,3 @@
-
 import { Anime } from "./api";
 import streamingService from "./streamingService";
 
@@ -260,6 +259,71 @@ export const fetchEpisodeStream = async (animeId: number | string, episodeNumber
   return streamingService.getStreamingData(Number(animeId), Number(episodeNumber));
 };
 
+// Fetch anime by search query
+export const fetchAnimeBySearch = async (query: string): Promise<Anime[]> => {
+  try {
+    // Check if query is empty
+    if (!query.trim()) {
+      return [];
+    }
+
+    // Real API integration with Jikan API for search
+    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&sfw=true&limit=24`);
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch search results');
+    }
+    
+    const data = await response.json();
+    
+    // Map Jikan API response to our Anime interface
+    return data.data.map((anime: any) => ({
+      id: anime.mal_id,
+      title: anime.title,
+      description: anime.synopsis || 'No description available',
+      synopsis: anime.synopsis || 'No synopsis available',
+      image: anime.images.jpg.large_image_url || anime.images.jpg.image_url,
+      banner: anime.images.jpg.large_image_url || anime.images.jpg.image_url,
+      releaseYear: anime.year || new Date(anime.aired.from).getFullYear() || 2023,
+      status: mapStatus(anime.status),
+      genres: anime.genres.map((g: any) => g.name),
+      type: anime.type || 'TV',
+      episodes: anime.episodes || 0,
+      rating: anime.score || 0,
+      popularity: anime.popularity || 0,
+      studios: anime.studios.map((s: any) => s.name),
+      duration: anime.duration || '24 min',
+      trailer: anime.trailer?.url || '',
+      episodeList: [],
+    }));
+  } catch (error) {
+    console.error('Error fetching search results:', error);
+    
+    // Return mock data as fallback for search
+    if (!query.trim()) return [];
+    
+    return Array.from({ length: 6 }, (_, i) => ({
+      id: 100 + i,
+      title: `${query} - Anime Result ${i + 1}`,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      image: `https://via.placeholder.com/240x360/19171b/ffffff?text=Search+${i + 1}`,
+      banner: `https://via.placeholder.com/1920x1080/19171b/ffffff?text=Banner+${i + 1}`,
+      releaseYear: 2022,
+      status: 'Airing',
+      genres: ['Action', 'Adventure', 'Fantasy'],
+      type: 'TV',
+      episodes: 12,
+      rating: 7.5 + Math.random(),
+      popularity: i + 1,
+      studios: ['Studio MAPPA'],
+      duration: '24 min',
+      trailer: 'https://www.youtube.com/watch?v=example',
+      episodeList: [],
+    }));
+  }
+};
+
 // Export the useStreamingLinks hook
 export { useStreamingLinks } from './hooks/useStreamingLinks';
 
@@ -268,5 +332,6 @@ export default {
   fetchTrendingAnime,
   fetchRecentAnime,
   fetchWatchlist,
-  fetchEpisodeStream
+  fetchEpisodeStream,
+  fetchAnimeBySearch
 };

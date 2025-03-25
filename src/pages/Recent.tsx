@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRecentAnime } from '@/services/animeAPI';
+import { fetchRecentAnime } from '@/services/localAPI';
 import AnimeCard from '@/components/AnimeCard';
 import { Loader2 } from 'lucide-react';
 

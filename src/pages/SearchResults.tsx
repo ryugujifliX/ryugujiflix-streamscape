@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import AnimeCard from '../components/AnimeCard';
-import { fetchAnimeBySearch } from '../services/animeAPI';
+import { fetchAnimeBySearch } from '../services/localAPI';
 import { Loader2 } from 'lucide-react';
 
 const SearchResults = () => {

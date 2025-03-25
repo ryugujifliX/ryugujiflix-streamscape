@@ -15,15 +15,11 @@ import Watchlist from "./pages/Watchlist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
-import SearchResults from "./pages/SearchResults"; // Import new search results page
+import SearchResults from "./pages/SearchResults";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
-import Privacy from "./pages/Privacy";
-import DMCA from "./pages/DMCA";
-import Legal from "./pages/Legal";
-import Cookies from "./pages/Cookies";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import TopRated from "./pages/TopRated";
@@ -51,7 +47,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/search" element={<SearchResults />} /> {/* Add new search route */}
+            <Route path="/search" element={<SearchResults />} />
             
             {/* Genre pages */}
             <Route path="/genre/:genre" element={<GenrePage />} />
@@ -61,12 +57,6 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            
-            {/* Footer legal pages */}
-            <Route path="/dmca" element={<DMCA />} />
-            <Route path="/legal" element={<Legal />} />
-            <Route path="/cookies" element={<Cookies />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

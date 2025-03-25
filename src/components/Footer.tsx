@@ -93,9 +93,6 @@ const Footer = () => {
               <li>
                 <Link to="/terms" className="text-white/70 hover:text-ryugu-red transition-colors">Terms of Service</Link>
               </li>
-              <li>
-                <Link to="/privacy" className="text-white/70 hover:text-ryugu-red transition-colors">Privacy Policy</Link>
-              </li>
             </ul>
           </div>
         </div>
@@ -104,11 +101,6 @@ const Footer = () => {
           <p className="text-sm text-white/50">
             &copy; {new Date().getFullYear()} RyugujiFlixStream. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/dmca" className="text-sm text-white/50 hover:text-white transition-colors">DMCA</Link>
-            <Link to="/legal" className="text-sm text-white/50 hover:text-white transition-colors">Legal Notices</Link>
-            <Link to="/cookies" className="text-sm text-white/50 hover:text-white transition-colors">Cookie Policy</Link>
-          </div>
         </div>
       </div>
     </footer>

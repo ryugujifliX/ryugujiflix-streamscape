@@ -1,153 +1,69 @@
+# Welcome to your Lovable project
 
-# RyuguJiFlix - Anime Streaming Platform
+## Project info
 
-RyuguJiFlix is a comprehensive anime streaming platform that provides users with access to trending, recent, and top-rated anime content.
+**URL**: https://lovable.dev/projects/7e7e4afb-bd1e-463b-8e60-9f48d6daa723
 
-## Project Overview
+## How can I edit this code?
 
-This application consists of:
-- **Frontend**: React + TypeScript application with Vite
-- **Backend**: Express.js API server with MongoDB database
+There are several ways of editing your application.
 
-## Setup Guide
+**Use Lovable**
 
-### Prerequisites
+Simply visit the [Lovable Project](https://lovable.dev/projects/7e7e4afb-bd1e-463b-8e60-9f48d6daa723) and start prompting.
 
-- Node.js (v14 or later)
-- npm (v6 or later)
-- MongoDB (local installation or MongoDB Atlas account)
+Changes made via Lovable will be committed automatically to this repo.
 
-### Frontend Setup
+**Use your preferred IDE**
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repository-url>
-   cd ryugujiflix
-   ```
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-   
-   The frontend will be available at http://localhost:8080
+Follow these steps:
 
-### Backend Setup
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-1. **Navigate to the backend directory**
-   ```bash
-   cd backend
-   ```
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
 
-2. **Install backend dependencies**
-   ```bash
-   npm install
-   ```
+# Step 3: Install the necessary dependencies.
+npm i
 
-3. **Configure environment variables**
-   - Create a `.env` file in the backend directory
-   - Add the following variables:
-   ```
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/ryugujiflix
-   NODE_ENV=development
-   ```
-   
-   - If using MongoDB Atlas, replace the MONGODB_URI with your connection string
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
 
-4. **Seed the database**
-   ```bash
-   npm run seed
-   ```
-   
-   This will populate your database with initial anime data from the Jikan API.
+**Edit a file directly in GitHub**
 
-5. **Start the backend server**
-   ```bash
-   npm run dev
-   ```
-   
-   The API will be available at http://localhost:5000
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-## API Endpoints
+**Use GitHub Codespaces**
 
-### Anime
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-- `GET /api/anime` - Get all anime with pagination
-- `GET /api/anime/trending` - Get trending anime
-- `GET /api/anime/recent` - Get recently updated anime
-- `GET /api/anime/top-rated` - Get top rated anime
-- `GET /api/anime/:id` - Get anime by ID
-- `GET /api/anime/search/:query` - Search anime
-- `GET /api/anime/genre/:genre` - Get anime by genre
-- `GET /api/anime/type/:type` - Get anime by type (TV/Movie)
+## What technologies are used for this project?
 
-### Users
+This project is built with .
 
-- `GET /api/users/profile/:id` - Get user profile
-- `GET /api/users/watchlist/:userId` - Get user watchlist
-- `POST /api/users/watchlist/:userId/add/:animeId` - Add anime to watchlist
-- `DELETE /api/users/watchlist/:userId/remove/:animeId` - Remove anime from watchlist
-- `POST /api/users/history/:userId` - Update watch history
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-## External APIs
+## How can I deploy this project?
 
-The application uses two external APIs:
+Simply open [Lovable](https://lovable.dev/projects/7e7e4afb-bd1e-463b-8e60-9f48d6daa723) and click on Share -> Publish.
 
-1. **Jikan API** (https://api.jikan.moe/v4/) - For anime metadata
-2. **Consumet API** (https://api.consumet.org) - For streaming links
+## I want to use a custom domain - is that possible?
 
-## Technologies Used
-
-- **Frontend**:
-  - React with TypeScript
-  - React Router for navigation
-  - Tanstack Query for data fetching
-  - Tailwind CSS for styling
-  - shadcn/ui for UI components
-
-- **Backend**:
-  - Express.js
-  - MongoDB with Mongoose
-  - Axios for external API requests
-
-## Project Structure
-
-- `/src` - Frontend React application
-- `/backend` - Express.js backend
-  - `/models` - MongoDB models
-  - `/routes` - API routes
-  - `/scripts` - Database seeding scripts
-
-## Troubleshooting
-
-### Common Issues
-
-1. **MongoDB Connection Errors**
-   - Ensure MongoDB is running locally or your Atlas connection string is correct
-   - Check for network issues if using Atlas
-
-2. **API Rate Limiting**
-   - The Jikan API has rate limits. If seeding fails, try again after a few minutes
-
-3. **Missing Dependencies**
-   - If you encounter module not found errors, run `npm install` again
-
-## Deployment
-
-For deployment:
-
-1. **Frontend**:
-   - Build the frontend with `npm run build`
-   - Deploy the generated files to a static hosting service (Netlify, Vercel, etc.)
-
-2. **Backend**:
-   - Deploy to a Node.js hosting platform (Heroku, Railway, Render, etc.)
-   - Configure environment variables for production
-   - Set up a MongoDB Atlas database for production
-
+We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

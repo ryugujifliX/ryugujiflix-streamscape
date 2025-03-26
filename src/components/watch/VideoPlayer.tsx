@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { PlaySquare } from 'lucide-react';
+import { toast } from '../../components/ui/use-toast';
 
 interface VideoPlayerProps {
   animeTitle: string;
@@ -24,15 +25,49 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   useEffect(() => {
     // When videoUrl changes, update the video player
     if (videoRef.current && videoUrl) {
+      console.log('Setting video URL:', videoUrl);
+      
+      // Check if URL is valid
+      const isValidUrl = videoUrl.startsWith('http') || videoUrl.startsWith('https');
+      
+      if (!isValidUrl) {
+        console.error('Invalid video URL format:', videoUrl);
+        toast({
+          title: "Invalid URL",
+          description: "The video URL format is invalid",
+          variant: "destructive"
+        });
+        return;
+      }
+      
       videoRef.current.src = videoUrl;
       videoRef.current.load();
       
       // Try to play the video (may be prevented by browser autoplay policies)
       videoRef.current.play().catch(err => {
-        console.log("Autoplay prevented:", err);
+        console.log("Autoplay prevented or playback error:", err);
+        toast({
+          title: "Playback Notice",
+          description: "Click to play the video",
+        });
       });
     }
   }, [videoUrl]);
+
+  // Handle video errors
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.error('Video error occurred:', e);
+    const videoElement = e.currentTarget;
+    
+    console.log('Video error code:', videoElement.error?.code);
+    console.log('Video error message:', videoElement.error?.message);
+    
+    toast({
+      title: "Video Error",
+      description: `Error playing video: ${videoElement.error?.message || 'Unknown error'}`,
+      variant: "destructive"
+    });
+  };
 
   return (
     <div className="relative w-full aspect-video bg-black animate-fade-in">
@@ -62,6 +97,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             className="w-full h-full" 
             controls
             poster={`https://via.placeholder.com/1280x720/19171b/ffffff?text=${animeTitle}+-+Episode+${episodeNumber}`}
+            onError={handleVideoError}
           >
             <source src={videoUrl} type="video/mp4" />
             Your browser does not support the video tag.

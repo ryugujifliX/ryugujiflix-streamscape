@@ -1,19 +1,27 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { register as registerUser } from '@/services/authService';
 
 const registerSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  username: z.string()
+    .min(3, "Username must be at least 3 characters")
+    .max(30, "Username must be less than 30 characters"),
+  email: z.string()
+    .email("Please enter a valid email address")
+    .min(1, "Email is required"),
+  password: z.string()
+    .min(6, "Password must be at least 6 characters")
+    .max(50, "Password must be less than 50 characters")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number"),
   confirmPassword: z.string()
 }).refine(data => data.password === data.confirmPassword, {
   message: "Passwords do not match",
@@ -24,6 +32,8 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -51,11 +61,14 @@ const RegisterForm = () => {
     }
   };
 
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         {form.formState.errors.root && (
-          <div className="bg-red-500/20 border border-red-500/50 text-white p-3 rounded-md">
+          <div className="bg-red-500/20 border border-red-500/50 text-white p-3 rounded-md text-sm">
             {form.formState.errors.root.message}
           </div>
         )}
@@ -105,15 +118,30 @@ const RegisterForm = () => {
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="password"
-                  className="bg-black/50"
-                  placeholder="••••••••"
-                  disabled={isLoading}
-                />
-              </FormControl>
+              <div className="relative">
+                <FormControl>
+                  <Input
+                    {...field}
+                    type={showPassword ? "text" : "password"}
+                    className="bg-black/50 pr-10"
+                    placeholder="••••••••"
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-white/70" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-white/70" />
+                  )}
+                </Button>
+              </div>
               <FormMessage />
             </FormItem>
           )}
@@ -125,15 +153,30 @@ const RegisterForm = () => {
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Confirm Password</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  type="password"
-                  className="bg-black/50"
-                  placeholder="••••••••"
-                  disabled={isLoading}
-                />
-              </FormControl>
+              <div className="relative">
+                <FormControl>
+                  <Input
+                    {...field}
+                    type={showConfirmPassword ? "text" : "password"}
+                    className="bg-black/50 pr-10"
+                    placeholder="••••••••"
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={toggleConfirmPasswordVisibility}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4 text-white/70" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-white/70" />
+                  )}
+                </Button>
+              </div>
               <FormMessage />
             </FormItem>
           )}

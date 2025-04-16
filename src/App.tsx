@@ -15,6 +15,18 @@ import Watchlist from "./pages/Watchlist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import DMCA from "./pages/DMCA";
+import Legal from "./pages/Legal";
+import Cookies from "./pages/Cookies";
+import Movies from "./pages/Movies";
+import Series from "./pages/Series";
+import TopRated from "./pages/TopRated";
+import GenrePage from "./pages/GenrePage";
 
 const queryClient = new QueryClient();
 
@@ -31,10 +43,29 @@ const App = () => (
             <Route path="/anime/:id/watch/:episodeNumber" element={<WatchAnime />} />
             <Route path="/trending" element={<Trending />} />
             <Route path="/recent" element={<Recent />} />
+            <Route path="/top-rated" element={<TopRated />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/series" element={<Series />} />
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
+            
+            {/* Genre pages */}
+            <Route path="/genre/:genre" element={<GenrePage />} />
+            
+            {/* Footer company pages */}
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            
+            {/* Footer legal pages */}
+            <Route path="/dmca" element={<DMCA />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/cookies" element={<Cookies />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Route>

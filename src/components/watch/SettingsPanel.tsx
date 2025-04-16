@@ -28,19 +28,11 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
     if (streamingData) {
       const source = streamingData.sources.find(s => s.server === server);
       if (source) {
-        console.log('Changing to server:', server, 'with URL:', source.url);
         setVideoUrl(source.url);
         toast({
           title: "Server Changed",
           description: `Now playing from ${server}`,
           duration: 2000,
-        });
-      } else {
-        console.error('No source found for server:', server);
-        toast({
-          title: "Server Error",
-          description: `Could not find source for ${server}`,
-          variant: "destructive"
         });
       }
     }
@@ -55,24 +47,19 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
         <div>
           <label className="text-xs text-white/60 block mb-2">Select Server</label>
           <div className="flex flex-wrap gap-2">
-            {streamingData && streamingData.sources.length > 0 ? (
-              streamingData.sources.map(source => (
-                <button
-                  key={source.server}
-                  onClick={() => handleServerChange(source.server)}
-                  className={`px-3 py-1 text-xs rounded-md ${
-                    selectedServer === source.server 
-                      ? 'bg-ryugu-red text-white' 
-                      : 'bg-white/10 hover:bg-white/20'
-                  }`}
-                  title={`Play using ${source.server} server (${source.quality || 'Auto'})`}
-                >
-                  {source.server} {source.quality && `(${source.quality})`}
-                </button>
-              ))
-            ) : (
-              <p className="text-xs text-white/60">No servers available</p>
-            )}
+            {streamingData && streamingData.sources.map(source => (
+              <button
+                key={source.server}
+                onClick={() => handleServerChange(source.server)}
+                className={`px-3 py-1 text-xs rounded-md ${
+                  selectedServer === source.server 
+                    ? 'bg-ryugu-red text-white' 
+                    : 'bg-white/10 hover:bg-white/20'
+                }`}
+              >
+                {source.server} {source.quality && `(${source.quality})`}
+              </button>
+            ))}
           </div>
         </div>
         

@@ -24,11 +24,9 @@ const EpisodesPanel: React.FC<EpisodesPanelProps> = ({
             onClick={() => goToEpisode(episode.number)}
             className={`w-10 h-10 flex items-center justify-center rounded-md text-sm ${
               episode.number === currentEpisode.number 
-                ? 'bg-ryugu-red text-white font-bold' 
+                ? 'bg-ryugu-red text-white' 
                 : 'bg-white/10 hover:bg-white/20'
             }`}
-            title={`Episode ${episode.number}`}
-            aria-label={`Play Episode ${episode.number}`}
           >
             {episode.number}
           </button>

@@ -1,5 +1,5 @@
-
-import { toast } from "../components/ui/use-toast";
+import { createClient } from '@supabase/supabase-js'
+import { toast } from "../components/ui/use-toast"
 
 export interface StreamSource {
   server: string;
@@ -29,40 +29,30 @@ export const SERVERS = {
 // Function to get streaming links for an episode
 export const getStreamingLinks = async (animeId: number, episodeNumber: number): Promise<StreamData> => {
   try {
-    // Real API integration with Consumet API
-    const response = await fetch(`https://api.consumet.org/anime/gogoanime/watch/${animeId}-episode-${episodeNumber}`);
-    
-    if (!response.ok) {
-      // If real API fails, fall back to mock data
-      console.warn("Failed to fetch real streaming data, using fallback data");
-      return getFallbackStreamingLinks(animeId, episodeNumber);
+    const supabase = createClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_ANON_KEY
+    )
+
+    const { data, error } = await supabase.functions.invoke('streaming', {
+      body: { animeId, episodeNumber }
+    })
+
+    if (error) {
+      console.error('Error fetching streaming data:', error)
+      return getFallbackStreamingLinks(animeId, episodeNumber)
     }
-    
-    const data = await response.json();
-    
-    // Transform the API response to match our StreamData interface
-    return {
-      id: episodeNumber,
-      sources: data.sources.map((source: any) => ({
-        server: source.isM3U8 ? "HLS" : source.name || SERVERS.VIDSTREAMING,
-        url: source.url,
-        quality: source.quality || "Auto"
-      })),
-      subtitles: data.subtitles?.map((sub: any) => ({
-        lang: sub.lang,
-        url: sub.url
-      })) || []
-    };
+
+    return data
   } catch (error) {
-    console.error("Error fetching streaming links:", error);
+    console.error('Error fetching streaming links:', error)
     toast({
       title: "Error",
       description: "Failed to load streaming sources. Using fallback data.",
       variant: "destructive"
-    });
+    })
     
-    // Return mock data as fallback
-    return getFallbackStreamingLinks(animeId, episodeNumber);
+    return getFallbackStreamingLinks(animeId, episodeNumber)
   }
 };
 

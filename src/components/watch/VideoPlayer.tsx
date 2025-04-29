@@ -24,6 +24,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   useEffect(() => {
     // When videoUrl changes, update the video player
     if (videoRef.current && videoUrl) {
+      // Check if it's a local video from the public folder
+      const isLocalVideo = videoUrl.startsWith('/videos/');
+      
       videoRef.current.src = videoUrl;
       videoRef.current.load();
       
@@ -63,7 +66,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             controls
             poster={`https://via.placeholder.com/1280x720/19171b/ffffff?text=${animeTitle}+-+Episode+${episodeNumber}`}
           >
-            <source src={videoUrl} type="video/mp4" />
+            <source src={videoUrl} type={videoUrl.endsWith('.mp4') ? "video/mp4" : "application/x-mpegURL"} />
             Your browser does not support the video tag.
           </video>
           <div className="absolute bottom-4 right-4 bg-black/50 px-2 py-1 rounded text-xs">
